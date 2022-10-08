@@ -3,13 +3,16 @@ import { RouterProvider } from 'react-router-dom';
 
 import { theme, GlobalStyle } from '@/themes';
 import appRouter from '@/routes';
+import AppLayout from '@/components/AppLayout';
 
 import 'antd/dist/antd.less';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <RouterProvider router={appRouter} />
+      <AppLayout>
+        <RouterProvider router={appRouter} />
+      </AppLayout>
       <GlobalStyle theme={theme} />
     </ThemeProvider>
   );
