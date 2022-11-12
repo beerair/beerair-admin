@@ -10,6 +10,7 @@ import {
 import { Admin } from '../admins/admin.entity';
 import { CreateAdminDto } from '../admins/dto/create-admin.dto';
 import { AuthService } from './auth.service';
+import { Public } from './decorators/public.decorator';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 
@@ -17,11 +18,13 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Post('signup')
   async signup(@Body() createAdminDto: CreateAdminDto): Promise<Admin> {
     return this.authService.signup(createAdminDto);
   }
 
+  @Public()
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
